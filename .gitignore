@@ -48,4 +48,6 @@ Thumbs.db
 *.mov
 *.wmv
 
-Buttercup-linux-x86_64_*.AppImage
+*.AppImage
+#Remember to remove exe-bits, it is polite
+!airlandsea-latest-x86_64_*.AppImage
