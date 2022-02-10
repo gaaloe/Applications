@@ -1,6 +1,6 @@
 #First time, upload and download:
 sudo apt-get install git-lfs.
-git lfs install.
+git-lfs install.
 #First time upload:
 cd Applications
 git lfs track '*.AppImage'
