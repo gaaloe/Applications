@@ -1,3 +1,3 @@
 git log --diff-filter=D --summary
-git filter-branch --index-filter 'git rm --cached --ignore-unmatch airlandsea-latest-x86_64_54d0275b80425483237e412fc70afbda.AppImage' HEAD
+git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch airlandsea-latest-x86_64_54d0275b80425483237e412fc70afbda.AppImage' HEAD
 git push -f
