@@ -51,3 +51,4 @@ Thumbs.db
 *.AppImage
 #Remember to remove exe-bits, it is polite
 !airlandsea-latest-x86_64_*.AppImage
+!turingmachine-latest-x86_64.AppImage
