@@ -1,28 +1,31 @@
 What does beatmachine do?
 * You provide a solvable Classic Turing Machine problem, and the 
-software gives you the number of rounds and questions a seasoned solo 
-player needs to solve it.
+software gives you the proposals, the answers to the proposals, and 
+the number of rounds and questions a seasoned solo player needs to 
+solve it.
 * The software is a CLI, command line interface program, requiring 
 very little from your computer: The keyboard, a terminal window, 
 execution permission, and you having access to the Turing Machine 
 boardgame and its websites.
-* Edit a JSON file following the syntax outlined below. Provide this 
-filename as an argument to the software:
+* Input is done in form of a JSON file following the syntax outlined 
+below. Provide a filename as an argument to the software.
 > cat A43_Y6L.json
 {"name":"#A43 Y6L", "verifiers":[{"card":4,"verif":447}, 
 {"card":9,"verif":646}, {"card":11,"verif":566}, 
 {"card":14,"verif":322}]}
 > ./beatmachine-latest-x86_64.AppImage A43_Y6L.json
+code:241 A: 4 ? ✅🔲🔲🔲
+         B: 9 ? ✅✅🔲🔲
 #A43 Y6L: I found the code in 1 round(s) and 2 question(s).
 
 Hardware:
 * The "beatmachine" software is provided for Linux x86_64 and AMD 
 computers (Intel and Ryzen chips, and some others) in an "AppImage" 
 executable file format, not as source code.
-* The software shall be downloaded and run locally on your Linux home 
-PC.
 
 Download:
+* The software shall be downloaded and run locally on your Linux home 
+PC.
 * The AppImage file is currently distributed from a public GitHub 
 repository. Visit https://github.com/gaaloe/Applications, hit Go To 
 File, select the beatmachine*.AppImage, locate the dropdown menu 
@@ -30,10 +33,11 @@ marked with three dots, Download to your local machine.
 
 Install:
 * The AppImage format needs very little from your environment. The 
-fuse or fuse2 library (Filesystem in Userspace) must be installed, 
-that's all. If installation is needed use the ordinary Linux package 
-updater as root user.
-> sudo apt-get install fuse
+fuse or fuse3 library (Filesystem in USErspace, 3: use the highest 
+numbered available) must be installed, that's all. If installation is 
+needed use the ordinary Linux package updater as root.
+> apt list --installed | grep fuse3
+> sudo apt-get install fuse3
 * In your local repository: Set the +x execution permission on the 
 beatmachine*.AppImage file:
 > chmod u+x beatmachine*.AppImage
