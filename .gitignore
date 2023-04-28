@@ -52,3 +52,7 @@ Thumbs.db
 #Remember to remove exe-bits, it is polite
 !airlandsea-latest-x86_64_*.AppImage
 !beatmachine-latest-x86_64.AppImage
+!beatmachine-x86_64.AppImage
+!beatmachine-armhf.AppImage
+core
+core.[0-9]*
