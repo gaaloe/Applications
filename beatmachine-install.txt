@@ -6,50 +6,73 @@ solve it.
 * The software is a CLI, command line interface program, requiring 
 very little from your computer: The keyboard, a terminal window, 
 execution permission, and you having access to the Turing Machine 
-boardgame and its websites.
+boardgame and it's websites.
 * Input is done in form of a JSON file following the syntax outlined 
-below. Provide a filename as an argument to the software.
+below. Provide a filename as an argument to the software, or provide 
+the JSON within ''.
 > cat A43_Y6L.json
 {"name":"#A43 Y6L", "verifiers":[{"card":4,"verif":447}, 
 {"card":9,"verif":646}, {"card":11,"verif":566}, 
 {"card":14,"verif":322}]}
-> ./beatmachine-latest-x86_64.AppImage A43_Y6L.json
-code:241 A: 4 ? ✅🔲🔲🔲
-         B: 9 ? ✅✅🔲🔲
+> ./beatmachine-x86_64.AppImage A43_Y6L.json
+code:241 A: 4 ? A:TRUE                          
+         B: 9 ? A:TRUE  B:TRUE                  
 #A43 Y6L: I found the code in 1 round(s) and 2 question(s).
 
 Hardware:
 * The "beatmachine" software is provided for Linux x86_64 and AMD 
-computers (Intel and Ryzen chips, and some others) in an "AppImage" 
-executable file format, not as source code.
+computers (Intel and Ryzen chips, and some others) and for ARM 32-bit 
+(like Raspberry Pi). You can use Windows WSL 2 as well.
+
+Packaging:
+* The "beatmachine" software is provided in "AppImage" executable 
+file format, or as Docker images, not as source code. 
 
 Download:
-* The software shall be downloaded and run locally on your Linux home 
-PC.
+* The software shall be downloaded and run locally on your home PC.
 * The AppImage file is currently distributed from a public GitHub 
 repository. Visit https://github.com/gaaloe/Applications, hit Go To 
 File, select the beatmachine*.AppImage, locate the dropdown menu 
 marked with three dots, Download to your local machine.
+* It is not necessary to use Git. But if you do, you need Git LFS as 
+well.
+* You can not download using wget.
+* The Docker image file is pulled from Docker Hub, see "docker pull 
+gaaloe/beatmachine-*", see https://hub.docker.com/repositories/gaaloe
 
 Install:
 * The AppImage format needs very little from your environment. The 
 fuse or fuse3 library (Filesystem in USErspace, 3: use the highest 
 numbered available) must be installed, that's all. If installation is 
 needed use the ordinary Linux package updater as root.
-> apt list --installed | grep fuse3
+> apt list --installed | grep fuse
+> sudo apt-get install fuse (...or...)
 > sudo apt-get install fuse3
+* If using Wiindows WSL 2:
+> sudo apt-get install libfuse2
 * In your local repository: Set the +x execution permission on the 
 beatmachine*.AppImage file:
 > chmod u+x beatmachine*.AppImage
-* No on-line server, graphics, deamons, ports, root access or special 
-users is needed. Compare this to Docker images and SNAP files and you 
-shuld be horrified of what they require.
-* Hardly any disk space (4.8 MByte) is needed. You can easily remove 
-the AppImage file, and nothing remains (unless things mentioned here 
-or in the help text).
+* To install the Docker image, see the documentation of installing a 
+docker runtime service. Then:
+> docker pull gaaloe/beatmachine-amd64
+> docker pull gaaloe/beatmachine-arm32v7
 
-Running:
+Running AppImage:
 * Start the "beatmachine" executable in your local directory where 
 the file resides after download:
-> ./beatmachine-latest-x86_64_*.AppImage
+> ./beatmachine-x86_64_*.AppImage
 * Provide the --help argument and follow the instructions.
+
+Running docker image:
+> docker run gaaloe/beatmachine-amd64
+* Provide the --help argument and follow the instructions.
+* By system design, a Docker container can not reach a file in your 
+environment, or even figure out your current working directory, 
+unless you mount parts of your environment as a docker "volume". The 
+standard trick used is '-v /home/you/somewhere:/tmp' which will mount 
+your /home/you/somewhere (i.e. the pwd result) directory. You can 
+also try '-v $(pwd):/tmp' or even shorter '-v `pwd`:/tmp' or 
+sometimes '-v ${pwd}:/tmp'
+* If the environment is Windows WSL, the docker '-v' is written as 
+'-v C:\users\you\somewhere:/tmp' or '-v %CD%:/tmp'
