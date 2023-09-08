@@ -9,7 +9,7 @@ execution permission, and you having access to the Turing Machine
 boardgame and it's websites.
 * Input is done in form of a JSON file following the syntax outlined 
 below. Provide a filename as an argument to the software, or provide 
-the JSON within ''.
+the JSON within a pair of quotes.
 > cat A43_Y6L.json
 {"name":"#A43 Y6L", "verifiers":[{"card":4,"verif":447}, 
 {"card":9,"verif":646}, {"card":11,"verif":566}, 
@@ -19,14 +19,17 @@ code:241 A: 4 ? A:TRUE
          B: 9 ? A:TRUE  B:TRUE                  
 #A43 Y6L: I found the code in 1 round(s) and 2 question(s).
 
+Packaging:
+* The "beatmachine" software is provided in "AppImage" executable 
+file format, or as Docker images, not as source code. You must 
+possess enough computer knowledge regarding AppImage or Docker image 
+to proceed further. If you don't, acquire more knowledge before 
+continuing! AppImages are the easiest.
+
 Hardware:
 * The "beatmachine" software is provided for Linux x86_64 and AMD 
 computers (Intel and Ryzen chips, and some others) and for ARM 32-bit 
 (like Raspberry Pi). You can use Windows WSL 2 as well.
-
-Packaging:
-* The "beatmachine" software is provided in "AppImage" executable 
-file format, or as Docker images, not as source code. 
 
 Download:
 * The software shall be downloaded and run locally on your home PC.
@@ -48,7 +51,7 @@ needed use the ordinary Linux package updater as root.
 > apt list --installed | grep fuse
 > sudo apt-get install fuse (...or...)
 > sudo apt-get install fuse3
-* If using Wiindows WSL 2:
+* If using Windows WSL 2:
 > sudo apt-get install libfuse2
 * In your local repository: Set the +x execution permission on the 
 beatmachine*.AppImage file:
@@ -67,12 +70,3 @@ the file resides after download:
 Running docker image:
 > docker run gaaloe/beatmachine-amd64
 * Provide the --help argument and follow the instructions.
-* By system design, a Docker container can not reach a file in your 
-environment, or even figure out your current working directory, 
-unless you mount parts of your environment as a docker "volume". The 
-standard trick used is '-v /home/you/somewhere:/tmp' which will mount 
-your /home/you/somewhere (i.e. the pwd result) directory. You can 
-also try '-v $(pwd):/tmp' or even shorter '-v `pwd`:/tmp' or 
-sometimes '-v ${pwd}:/tmp'
-* If the environment is Windows WSL, the docker '-v' is written as 
-'-v C:\users\you\somewhere:/tmp' or '-v %CD%:/tmp'
