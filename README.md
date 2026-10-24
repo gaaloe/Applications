@@ -9,6 +9,6 @@ git add .gitattributes
 chmod ugo-x *.AppImage
 git push origin master
 #Download:
-git clone git@bitbucket.org:gaaloe/applications.git Applications
+git clone ssh://git@github.com/gaaloe/Applications.git Applications
 cd Applications
 chmod ugo+x *.AppImage
